@@ -21,4 +21,15 @@ public class PostService {
 
     return postCollection;
   }
+
+  public List<Post> getOnePost(){
+
+    Post post1 = new Post("This is your post", "This is your post. It has some wild content", new Date());
+
+    List<Post> postCollection = new ArrayList<>();
+    postCollection.add(post1);
+
+    return postCollection;
+
+  }
 }
