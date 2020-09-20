@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import technicalblog.model.Post;
 import technicalblog.service.PostService;
 
-import javax.jws.WebParam;
 import java.util.List;
 
 @Controller
