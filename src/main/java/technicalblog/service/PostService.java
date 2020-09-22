@@ -32,4 +32,8 @@ public class PostService {
     return postCollection;
 
   }
+
+  public void createPost(Post newPost) {
+    //TODO
+  }
 }
