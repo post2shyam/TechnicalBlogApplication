@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import technicalblog.model.Post;
 import technicalblog.service.PostService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,8 +19,9 @@ public class PostController {
 
   @RequestMapping("posts")
   public String getUserPosts(Model model) {
-    List<Post> onePost = postService.getOnePost();
-    model.addAttribute("posts", onePost);
+    List<Post> posts = new ArrayList<>();
+    posts.add(postService.getOnePost());
+    model.addAttribute("posts", posts);
     return "posts";
   }
 
