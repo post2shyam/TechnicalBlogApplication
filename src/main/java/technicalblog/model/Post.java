@@ -44,4 +44,8 @@ public class Post {
   public Date getDate() {
     return date;
   }
+
+  public Integer getId() {
+    return id;
+  }
 }

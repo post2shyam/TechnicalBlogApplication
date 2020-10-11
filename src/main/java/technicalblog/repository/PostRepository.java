@@ -41,6 +41,11 @@ public class PostRepository {
     return getEntityManager().find(Post.class, 3);
   }
 
+  public Post getPost(Integer postId) {
+    EntityManager entityManager = getEntityManager();
+    return entityManager.find(Post.class, postId);
+  }
+
   private EntityManager getEntityManager() {
     return emf.createEntityManager();
   }
