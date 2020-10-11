@@ -30,4 +30,9 @@ public class PostService {
   public Post getPost(Integer postId){
     return postRepository.getPost(postId);
   }
+
+  public void updatePost(Post updatedPost) {
+    updatedPost.setDate(new Date());
+    postRepository.updatePost(updatedPost);
+  }
 }

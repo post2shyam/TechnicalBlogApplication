@@ -43,6 +43,8 @@ public class PostController {
 
   @RequestMapping(value = "/editPost", method = RequestMethod.POST)
   public String editPostSubmit(@RequestParam(name = "postId") Integer postId, Post updatedPost) {
+    updatedPost.setId(postId);
+    postService.updatePost(updatedPost);
     return "redirect:/posts";
   }
 }

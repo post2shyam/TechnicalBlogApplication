@@ -29,6 +29,10 @@ public class Post {
     this.body = body;
   }
 
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
   public void setTitle(String title) {
     this.title = title;
   }
@@ -48,4 +52,6 @@ public class Post {
   public Integer getId() {
     return id;
   }
+
+
 }

@@ -46,6 +46,22 @@ public class PostRepository {
     return entityManager.find(Post.class, postId);
   }
 
+  public void updatePost(Post updatedPost) {
+    EntityManager entityManager = getEntityManager();
+    EntityTransaction transaction = entityManager.getTransaction();
+
+    // We actually dont have to catch the RuntimeException (its unchecked exception and JPA handles
+    // it and rollsback if needed
+    // the following I am doing for the purpose of understanding.
+    try {
+      transaction.begin();
+      entityManager.merge(updatedPost);
+      transaction.commit();
+    } catch (Exception exception) {
+      transaction.rollback();
+    }
+  }
+
   private EntityManager getEntityManager() {
     return emf.createEntityManager();
   }
