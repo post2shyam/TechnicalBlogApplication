@@ -21,10 +21,16 @@ public class Post {
   @Column(name = "date")
   private Date date;
 
-  public Post() {}
-
   public void setDate(Date date) {
     this.date = date;
+  }
+
+  public void setBody(String body) {
+    this.body = body;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getTitle() {

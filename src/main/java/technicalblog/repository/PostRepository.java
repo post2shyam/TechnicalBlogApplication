@@ -34,7 +34,6 @@ public class PostRepository {
     } catch (Exception exception) {
       transaction.rollback();
     }
-
     return newPost;
   }
 

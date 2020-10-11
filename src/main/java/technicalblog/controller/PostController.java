@@ -26,7 +26,7 @@ public class PostController {
 
   @RequestMapping("/posts/create")
   public String newPost() {
-    return "posts/create";
+    return "/posts/create";
   }
 
   @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
