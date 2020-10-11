@@ -8,6 +8,7 @@ import java.util.Date;
 public class Post {
 
   @Id
+  @GeneratedValue
   @Column(name = "id")
   private Integer id;
 
@@ -17,17 +18,13 @@ public class Post {
   @Column(name = "body")
   private String body;
 
-  @Transient
+  @Column(name = "date")
   private Date date;
 
-  public Post(String title, String body, Date date) {
-    this.title = title;
-    this.body = body;
-    this.date = date;
-  }
+  public Post() {}
 
-  public Post() {
-    
+  public void setDate(Date date) {
+    this.date = date;
   }
 
   public String getTitle() {
