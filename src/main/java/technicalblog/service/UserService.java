@@ -8,15 +8,14 @@ import technicalblog.repository.UserRepository;
 @Service
 public class UserService {
 
-  @Autowired
-  private UserRepository userRepository;
+  @Autowired private UserRepository userRepository;
 
-  public boolean login(User user) {
-    if (user.getUsername().equals("validuser")) {
-      return true;
-    } else {
-      return false;
+  public User login(User user) {
+    User existingUser = userRepository.checkUser(user.getUserName(), user.getPassword());
+    if (existingUser != null) {
+      return existingUser;
     }
+    return null;
   }
 
   public void registerUser(User user) {

@@ -3,10 +3,7 @@ package technicalblog.repository;
 import org.springframework.stereotype.Repository;
 import technicalblog.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.*;
 
 @Repository
 public class UserRepository {
@@ -18,9 +15,6 @@ public class UserRepository {
     EntityManager entityManager = getEntityManager();
     EntityTransaction transaction = entityManager.getTransaction();
 
-    // We actually dont have to catch the RuntimeException (its unchecked exception and JPA handles
-    // it and rollsback if needed
-    // the following I am doing for the purpose of understanding.
     try {
       transaction.begin();
       entityManager.persist(newUser);
@@ -28,6 +22,24 @@ public class UserRepository {
     } catch (Exception exception) {
       transaction.rollback();
     }
+  }
+
+  public User checkUser(String username, String password) {
+    User loggedInUser = null;
+    EntityManager entityManager = getEntityManager();
+    TypedQuery<User> typedQuery =
+        entityManager.createQuery(
+            "SELECT u FROM User u WHERE u.userName = :username AND u.password = :password",
+            User.class);
+    typedQuery.setParameter("username", username);
+    typedQuery.setParameter("password", password);
+
+    try {
+      loggedInUser = typedQuery.getSingleResult();
+    } catch (NoResultException noResultException) {
+      // Do nothing
+    }
+    return loggedInUser;
   }
 
   private EntityManager getEntityManager() {
