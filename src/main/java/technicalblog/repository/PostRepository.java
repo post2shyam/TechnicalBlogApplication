@@ -62,6 +62,23 @@ public class PostRepository {
     }
   }
 
+  public void deletePost(Integer postId) {
+    EntityManager entityManager = getEntityManager();
+    EntityTransaction transaction = entityManager.getTransaction();
+
+    // We actually dont have to catch the RuntimeException (its unchecked exception and JPA handles
+    // it and rollsback if needed
+    // the following I am doing for the purpose of understanding.
+    try {
+      transaction.begin();
+      Post postTobeRemoved = entityManager.find(Post.class, postId);
+      entityManager.remove(postTobeRemoved);
+      transaction.commit();
+    } catch (Exception exception) {
+      transaction.rollback();
+    }
+  }
+
   private EntityManager getEntityManager() {
     return emf.createEntityManager();
   }
