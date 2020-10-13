@@ -11,7 +11,7 @@ public class UserService {
   @Autowired private UserRepository userRepository;
 
   public User login(User user) {
-    User existingUser = userRepository.checkUser(user.getUserName(), user.getPassword());
+    User existingUser = userRepository.checkUser(user.getUsername(), user.getPassword());
     if (existingUser != null) {
       return existingUser;
     }

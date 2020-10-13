@@ -29,7 +29,7 @@ public class UserRepository {
     EntityManager entityManager = getEntityManager();
     TypedQuery<User> typedQuery =
         entityManager.createQuery(
-            "SELECT u FROM User u WHERE u.userName = :username AND u.password = :password",
+            "SELECT u FROM User u WHERE u.username = :username AND u.password = :password",
             User.class);
     typedQuery.setParameter("username", username);
     typedQuery.setParameter("password", password);
