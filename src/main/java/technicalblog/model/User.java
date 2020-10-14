@@ -1,6 +1,8 @@
 package technicalblog.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +24,9 @@ public class User {
   @JoinColumn(name = "profile_id")
   private UserProfile profile;
 
+  @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+  private List<Post> posts = new ArrayList<>();
+
   public Integer getId() {
     return id;
   }
@@ -29,7 +34,6 @@ public class User {
   public void setId(Integer id) {
     this.id = id;
   }
-
 
   public String getPassword() {
     return password;
